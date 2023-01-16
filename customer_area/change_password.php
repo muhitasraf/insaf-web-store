@@ -1,6 +1,6 @@
 <?php 
-$select_user = mysqli_query($con,"select * from users where user_id = '$_SESSION[user_id]'");
-$fetch_user = mysqli_fetch_array($select_user);
+$select_user = $pdo->query("select * from users where user_id = '$_SESSION[user_id]'");
+$fetch_user = $select_user->fetchAll();
 ?>
 	<div class="registration_box">
 		<form method="post" action=""  enctype="multipart/form-data">
@@ -48,13 +48,13 @@ if(isset($_POST['change_password'])){
 	$hash_new_password = md5($new_password);
 	$confirm_new_password = trim($_POST['confirm_new_password']);
 	
-	$select_password = mysqli_query($con,"select * from password where user_password = '$hash_current_password' and user_id = '$_SESSION[user_id]'");
-	if(mysqli_num_rows($select_password) == 0){
+	$select_password = $pdo->query("SELECT * from users where user_password = '$hash_current_password' and user_id = '$_SESSION[user_id]'")->fetchAll();
+	if(count($select_password) == 0){
 		echo "<script>alert('Current Password is empty.')</script>";
 	}elseif($new_password != $confirm_new_password){
 		echo "<script>alert('Password not match.')</script>";
 	}else{
-		$update_password = mysqli_query($con,"update users set user_password = '$hash_current_password' and user_id = '$_SESSION[user_id]'");
+		$update_password = $pdo->query("UPDATE users set user_password = '$hash_current_password' WHERE user_id = '$_SESSION[user_id]'");
 		if($update_password){
 			echo "<script>alert('Password Updated.')</script>";
 			echo "<script>window.open(window.location.href,'_self')</script>";

@@ -19,9 +19,9 @@
 				</tr>
 			</thead>
 			<?php 
-				$all_users = mysqli_query($con,"select * from users order by user_id DESC ");
+				$all_users = $pdo->query("SELECT * from users order by user_id DESC ")->fetchAll();
 				$i=1;
-				while($row = mysqli_fetch_array($all_users)){
+				foreach($all_users as $row){
 			?>
 			<tbody>
 				<tr>
@@ -54,7 +54,7 @@
 
 <?php 
 if(isset($_GET['delete_user'])){
-	$delete_user = mysqli_query($con,"delete from users where user_id = '$_GET[delete_user]' ");
+	$delete_user = $pdo->query("DELETE from users where user_id = '$_GET[delete_user]'");
 	if($delete_user){
 		echo "<script>alert('Product delete successfully.')</script>";
 		echo "<script>window.open('index.php?action=view_pro','_self')</script>";
@@ -66,7 +66,7 @@ if(isset($_GET['delete_user'])){
 if(isset($_POST['deleteAll'])){
 	$remove = $_POST['deleteAll'];
 	foreach($remove as $key){
-		$run_remove = mysqli_query($con,"delete from users where user_id = '$key' ");
+		$run_remove = $pdo->query("DELETE from users where user_id = '$key' ");
 		if($run_remove){
 			echo "<script>alert('Selected item delete successfully.')</script>";
 			echo "<script>window.open('index.php?action=view_pro','_self')</script>";

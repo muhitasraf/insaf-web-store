@@ -1,4 +1,4 @@
-<select name="country">
+<select name="user_country">
 	<option value="">Select Your Country</option>
 	<option value="AF">Afghanistan</option>
 	<option value="AX">Åland Islands</option>

@@ -1,7 +1,7 @@
 
 <?php 
-$edit_product  = mysqli_query($con,"select * from products where product_id = '$_GET[product_id]' ");
-$fetch_edit = mysqli_fetch_array($edit_product);
+$edit_product  = $pdo->query("SELECT * from products where product_id = '$_GET[product_id]' ");
+$fetch_edit = $edit_product->fetch();
 ?>
 <div class="form_box">	
 	<form action="" method="post" enctype="multipart/form-data">
@@ -29,19 +29,16 @@ $fetch_edit = mysqli_fetch_array($edit_product);
 				<td>
 				<select name="product_categories" id=""><option value="">Select Category</option>
 					<?php
-						$get_categories = "select * from categories";
-						$run_categories = mysqli_query($con,$get_categories);
-						
-						while($row_categories=mysqli_fetch_array($run_categories)){
+						$get_categories = "SELECT * from categories";
+						$run_categories = $pdo->query($get_categories)->fetchAll();
+						foreach($run_categories as $row_categories){
 							$categories_id = $row_categories['categories_id'];
 							$categories_title = $row_categories['categories_title'];
-							
 							if($fetch_edit['product_categories'] == $categories_id){
 								echo "<option value='$fetch_edit[product_categories]' selected>$categories_title</option>";
 							}else{
 								echo "<option value='$categories_id'>$categories_title</option>";
 							}
-							
 						}
 					?>
 				</select>
@@ -84,11 +81,11 @@ $fetch_edit = mysqli_fetch_array($edit_product);
 
 <?php
 	if(isset($_POST['edit_post'])){
-		$product_title = trim(mysqli_real_escape_string($con,$_POST['product_title']));
+		$product_title = trim($_POST['product_title']);
 		$title_slug = $_POST['title_slug'];
 		$product_categories = $_POST['product_categories'];
 		$product_price = $_POST['product_price'];
-		$product_description = trim(mysqli_real_escape_string($con,$_POST['product_description']));
+		$product_description = trim($_POST['product_description']);
 		$product_keywords = $_POST['product_keywords'];
 		
 		$product_image = $_FILES['product_image']['name'];
@@ -97,13 +94,12 @@ $fetch_edit = mysqli_fetch_array($edit_product);
 		
 		if(!empty($_FILES['product_image']['name'])){
 			if(move_uploaded_file($product_image_tmp,"product_images/$product_image")){
-				$update_product = mysqli_query($con,"update products set product_categories ='$product_categories' , product_title ='$product_title', title_slug = '$title_slug', product_price = '$product_price', product_description = '$product_description', product_image = '$product_image', product_keywords = '$product_keywords', date = '$date' where product_id = '$_GET[product_id]' ");
+				unlink('product_images/'.$fetch_edit['product_image']);
+				$update_product = $pdo->query("update products set product_categories ='$product_categories' , product_title ='$product_title', title_slug = '$title_slug', product_price = '$product_price', product_description = '$product_description', product_image = '$product_image', product_keywords = '$product_keywords', date = '$date' where product_id = '$_GET[product_id]' ");
 			}
-				
 		}else{
-			$update_product = mysqli_query($con,"update products set product_categories ='$product_categories' , product_title ='$product_title', title_slug ='$title_slug', product_price = '$product_price', product_description = '$product_description', product_keywords = '$product_keywords', date = '$date' where product_id = '$_GET[product_id]' ");
+			$update_product = $pdo->query("update products set product_categories ='$product_categories' , product_title ='$product_title', title_slug ='$title_slug', product_price = '$product_price', product_description = '$product_description', product_keywords = '$product_keywords', date = '$date' where product_id = '$_GET[product_id]' ");
 		}
-		
 		if($update_product){
 			echo "<script>alert('Product has been updated successfully')</script>";
 			echo "<script>window.open(window.location.href,'_self')</script>";

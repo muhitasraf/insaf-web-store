@@ -41,8 +41,8 @@
 			</div>
 			<div class="user_sidebar">
 				<?php 
-					$run_image = mysqli_query($con,"select * from users where user_id = '$_SESSION[user_id]'");
-					$row_image = mysqli_fetch_array($run_image);
+					$run_image = $pdo->query("SELECT * from users where user_id = '$_SESSION[user_id]'");
+					$row_image = $run_image->fetch();
 					
 					if($row_image['user_image'] !=''){
 				?>	

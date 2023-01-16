@@ -1,6 +1,20 @@
 <IfModule mod_rewrite.c>
+  # Options -Indexes
+  # RewriteEngine On
+  # RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteCond %{REQUEST_FILENAME} !-f
+  # RewriteRule ^(.*)$ index.php?categories=$1 [C]
+  # RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteCond %{REQUEST_FILENAME} !-f
+  # RewriteRule ^(.*)$ details.php?title_slug=$1 [L]
+  Options -Indexes
   RewriteEngine On
+  
+  RewriteCond %(REQUEST_FILENAME) !-f
+  RewriteCond %(REQUEST_FILENAME) !-d
+  RewriteRule ^categories-([a-z0-9]+)$ index.php?categories=$1 [QSA,L]
+  
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ details.php?title_slug=$1 [QSA,L]
+  RewriteRule ^(.*)$ details.php?title_slug=$1 [L,QSA]
 </IfModule>

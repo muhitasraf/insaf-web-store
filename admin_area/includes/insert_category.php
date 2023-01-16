@@ -26,9 +26,9 @@
 <?php
 	if(isset($_POST['insert_cat'])){
 
-		$product_categories = mysqli_real_escape_string($con,$_POST['product_categories']);
+		$product_categories = $_POST['product_categories'];
 		
-		$insert_cat = mysqli_query($con,"insert into categories ( categories_title) values('$product_categories')");
+		$insert_cat = $pdo->query("INSERT into categories ( categories_title) values('$product_categories')");
 		
 		if($insert_cat){
 			echo "<script>alert('Category has been uploaded successfully')</script>";

@@ -22,9 +22,9 @@
 				</tr>
 			</thead>
 			<?php 
-				$all_products = mysqli_query($con,"select * from products order by product_id DESC ");
+				$all_products = $pdo->query("SELECT * FROM products order by product_id DESC")->fetchAll();
 				$i=1;
-				while($row = mysqli_fetch_array($all_products)){
+				foreach($all_products as $row){
 			?>
 			<tbody>
 				<tr>
@@ -58,7 +58,7 @@
 
 <?php 
 if(isset($_GET['delete_product'])){
-	$delete_product = mysqli_query($con,"delete from products where product_id = '$_GET[delete_product]' ");
+	$delete_product = $pdo->query("DELETE FROM products where product_id = '$_GET[delete_product]' ");
 	if($delete_product){
 		echo "<script>alert('Product delete successfully.')</script>";
 		echo "<script>window.open('index.php?action=view_pro','_self')</script>";
@@ -70,7 +70,7 @@ if(isset($_GET['delete_product'])){
 if(isset($_POST['deleteAll'])){
 	$remove = $_POST['deleteAll'];
 	foreach($remove as $key){
-		$run_remove = mysqli_query($con,"delete from products where product_id = '$key' ");
+		$run_remove = $pdo->query("DELETE FROM products where product_id = '$key' ");
 		if($run_remove){
 			echo "<script>alert('Selected item delete successfully.')</script>";
 			echo "<script>window.open('index.php?action=view_pro','_self')</script>";

@@ -41,15 +41,13 @@
 	
 <?php
 if(isset($_POST['login'])){
-	
 	$user_email = trim($_POST['user_email']);
 	$user_password = trim($_POST['user_password']);
 	$user_password = md5($user_password);
 	
-	$run_login = mysqli_query($con,"select * from users where user_email='$user_email' AND user_password='$user_password' "); 
-	$check_login = mysqli_num_rows($run_login);
-	
-	$row_login = mysqli_fetch_array($run_login);
+	$run_login = $pdo->query("SELECT * FROM users WHERE user_email='$user_email' AND user_password='$user_password' "); 
+	$row_login = $run_login->fetch();
+	$check_login = count($row_login);
 	
 	if($check_login == 0){
 		echo "<script>alert('Password or email not match.')</script>";
@@ -57,20 +55,17 @@ if(isset($_POST['login'])){
 	}
 	
 	$ip_address = getIpAddress();
-	$run_cart = mysqli_query($con,"select * from cart where ip_address='$ip_address'");
-	$check_cart = mysqli_num_rows($run_cart);
+	$run_cart = $pdo->query("SELECT * FROM cart WHERE ip_address='$ip_address'");
+	$check_cart = count($run_cart->fetch());
 	
 	if($check_login > 0 AND $check_cart==0){
-		
 		$_SESSION['user_id'] = $row_login['user_id'];
 		$_SESSION['role']=$row_login['role'];
 		$_SESSION['user_email'] = $user_email;
 		
 		echo "<script>alert('Successfully login.')</script>";
 		echo "<script>window.open('my_account.php','_self')</script>";
-		
 	}else{
-		
 		$_SESSION['user_id'] = $row_login['user_id'];
 		$_SESSION['role']=$row_login['role'];
 		$_SESSION['user_email'] = $user_email;

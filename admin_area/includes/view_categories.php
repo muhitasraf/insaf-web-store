@@ -18,9 +18,9 @@
 				</tr>
 			</thead>
 			<?php 
-				$all_categories = mysqli_query($con,"select * from categories order by categories_id DESC ");
+				$all_categories = $pdo->query("SELECT * from categories order by categories_id DESC")->fetchAll();
 				$i=1;
-				while($row = mysqli_fetch_array($all_categories)){
+				foreach($all_categories as $row){
 			?>
 			<tbody>
 				<tr>
@@ -50,7 +50,7 @@
 
 <?php 
 if(isset($_GET['delete_category'])){
-	$delete_category = mysqli_query($con,"delete from categories where categories_id = '$_GET[delete_category]' ");
+	$delete_category = $pdo->query("delete from categories where categories_id = '$_GET[delete_category]' ");
 	if($delete_category){
 		echo "<script>alert('Category delete successfully.')</script>";
 		echo "<script>window.open('index.php?action=view_cat','_self')</script>";
@@ -62,7 +62,7 @@ if(isset($_GET['delete_category'])){
 if(isset($_POST['deleteAll'])){
 	$remove = $_POST['deleteAll'];
 	foreach($remove as $key){
-		$run_remove = mysqli_query($con,"delete from categories where categories_id = '$key' ");
+		$run_remove = $pdo->query("delete from categories where categories_id = '$key' ");
 		if($run_remove){
 			
 		}else{

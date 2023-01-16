@@ -1,6 +1,6 @@
 <?php 
-$select_user = mysqli_query($con,"select * from users where user_id = '$_SESSION[user_id]'");
-$fetch_user = mysqli_fetch_array($select_user);
+$select_user = $pdo->query("select * from users where user_id = '$_SESSION[user_id]'");
+$fetch_user = $select_user->fetch();
 ?>
 	<div class="registration_box">
 		<form method="post" action=""  enctype="multipart/form-data">
@@ -41,16 +41,16 @@ if(isset($_POST['edit_account'])){
 	$current_password = trim($_POST['current_password']);
 	$hash_password = md5($current_password);
 	
-	$check_exist = mysqli_query($con," select * from users where user_email = '$user_email' ");
-	$email_count = mysqli_num_rows($check_exist);
-	$row_register = mysqli_fetch_array($check_exist);
+	$check_exist = $pdo->query("SELECT * FROM users WHERE user_email = '$user_email' ");
 	
+	$row_register = $check_exist->fetchAll();
+	$email_count = count($row_register);
 	if($email_count>0){
 		echo "<script>alert('Email $user_email exist!')</script>";
 	}elseif($fetch_user['user_password'] != $hash_password){
 		echo "<script>alert('Your Current Password is wrong.')</script>";
 	}else{
-		$update_email = mysqli_query($con,"update users set user_email = '$user_email' where user_id = '$_SESSION[user_id]'");
+		$update_email = $pdo->query("UPDATE users SET user_email = '$user_email' WHERE user_id = '$_SESSION[user_id]'");
 		if($update_email){
 			echo "<script>alert('Email updated Successfully')</script>";
 			echo "<script>window.open(window.location.href,'_self')</script>";

@@ -36,7 +36,7 @@ include("includes/db.php");
 								<img src="images/cart_icon.png" id="cart" alt="" />
 								<div class="notification_cart_no">
 									<?php
-										getTotalItem();
+										getTotalItem($pdo);
 									?>
 								</div>
 							</div>
@@ -60,8 +60,8 @@ include("includes/db.php");
 			<?php }else{ ?>
 			
 			<?php 
-			$select_user = mysqli_query($con,"select * from users where user_id = '$_SESSION[user_id]' ");
-			$user_data = mysqli_fetch_array($select_user);
+			$select_user = $pdo->query("SELECT * from users where user_id = '$_SESSION[user_id]'");
+			$user_data = $select_user->fetch();
 			?>
 				<div id="profile">
 					<ul>

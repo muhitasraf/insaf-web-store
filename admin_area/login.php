@@ -29,14 +29,14 @@
 <?php 
 include('../includes/db.php');
 if(isset($_POST['login'])){
-	$user_email = trim(mysqli_real_escape_string($con,$_POST['user_email']));
-	$user_password = trim(mysqli_real_escape_string($con,$_POST['user_password']));
+	$user_email = trim($_POST['user_email']);
+	$user_password = trim($_POST['user_password']);
 	$hash_password = md5($user_password);
-	$select_user = "select * from users where user_email ='$user_email' AND user_password ='$hash_password' ";
-	$run_user = mysqli_query($con,$select_user) or die ("error:" . mysqli_error($con));
-	$check_user = mysqli_num_rows($run_user);
+	$select_user = "SELECT * FROM users WHERE user_email ='$user_email' AND user_password ='$hash_password' ";
+	$run_user = $pdo->query($select_user)->fetch();
+	$check_user = count($run_user);
 	if($check_user>0){
-		$db_row = mysqli_fetch_array($run_user);
+		$db_row = $run_user;
 		$_SESSION['user_email'] = $db_row['user_email'];
 		$_SESSION['user_name'] = $db_row['user_name'];
 		$_SESSION['user_id'] = $db_row['user_id'];

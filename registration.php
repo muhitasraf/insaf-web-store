@@ -94,27 +94,26 @@ if(isset($_POST['register'])){
 		$user_address = trim($_POST['user_address']);
 		$user_contact = trim($_POST['user_contact']);
 		
-		$check_exist = mysqli_query($con," select * from users where user_email = '$user_email' ");
-		$email_count = mysqli_num_rows($check_exist);
-		$row_register = mysqli_fetch_array($check_exist);
-		
+		$check_exist = $pdo->query(" SELECT * from users where user_email = '$user_email' ");
+		$row_register = $check_exist->fetchAll();
+		$email_count = count($row_register);
 		if($email_count > 0){
 			echo "<script>alert('Email $user_email exist!')</script>";
 		}elseif($row_register['$user_email'] != $user_email && $user_password == $confirm_password){
 			move_uploaded_file($user_image_tmp,"customer_area/customer_images/$user_image");
-			$run_insert = mysqli_query($con,"insert into users (ip_address, user_name, user_email, user_password, user_country, user_city, user_contact, user_address, user_image)
+			$run_insert = $pdo->query("INSERT into users (ip_address, user_name, user_email, user_password, user_country, user_city, user_contact, user_address, user_image)
 			values ('$ip_address','$user_name', '$user_email','$hash_password', '$user_country','$user_city','$user_contact','$user_address','$user_image')");
 			
 			if($run_insert){
-				$select_user = mysqli_query($con,"select * from users where user_email = '$user_email'");
-				$row_user = mysqli_fetch_array($select_user);
+				$select_user = $pdo->query("SELECT * from users where user_email = '$user_email'");
+				$row_user = $select_user->fetch();
 				
 				$_SESSION['user_id']=$row_user['user_id']."<br/>";
 				$_SESSION['role']=$row_user['role'];
 			}
 			
-			$run_cart = mysqli_query($con,"select * from cart where ip_address = '$ip_address'");
-			$check_cart = mysqli_num_rows($run_cart);
+			$run_cart = $pdo->query("SELECT * from cart where ip_address = '$ip_address'")->fetch();
+			$check_cart = count($run_cart);
 			
 			if($check_cart == 0){
 				$_SESSION['user_email']= $user_email;

@@ -1,6 +1,6 @@
 <?php 
-$edit_cat = mysqli_query($con,"select * from categories where categories_id = '$_GET[categories_id]'");
-$fetch_cat = mysqli_fetch_array($edit_cat);
+$edit_cat = $pdo->query("SELECT * from categories where categories_id = '$_GET[categories_id]'");
+$fetch_cat = $edit_cat->fetch();
 ?>
 <div class="form_box">	
 	<form action="" method="post" enctype="multipart/form-data">
@@ -29,9 +29,9 @@ $fetch_cat = mysqli_fetch_array($edit_cat);
 <?php
 	if(isset($_POST['edit_cat'])){
 
-		$categories_title = mysqli_real_escape_string($con,$_POST['product_categories']);
+		$categories_title = $_POST['product_categories'];
 		
-		$edit_cat = mysqli_query($con,"update categories set categories_title = '$categories_title' where categories_id = '$_GET[categories_id]' ");
+		$edit_cat = $pdo->query("UPDATE categories set categories_title = '$categories_title' where categories_id = '$_GET[categories_id]' ");
 		
 		if($edit_cat){
 			echo "<script>alert('Category has been updated successfully')</script>";

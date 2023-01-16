@@ -19,9 +19,9 @@
 				</tr>
 			</thead>
 			<?php 
-				$all_users = mysqli_query($con,"select * from users order by user_id DESC ");
+				$all_users = $pdo->query("SELECT * from users order by user_id DESC")->fetchAll();
 				$i=1;
-				while($row = mysqli_fetch_array($all_users)){
+				foreach($all_users as $row){
 			?>
 			<tbody>
 				<tr>

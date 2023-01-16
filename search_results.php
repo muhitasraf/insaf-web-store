@@ -5,7 +5,7 @@
 			<div id="sidebar_title">Catagories</div>
 				<ul id="cart">	
 					<?php
-						getCategories();
+						getCategories($pdo);
 					?>
 				</ul>
 		</div>
@@ -13,11 +13,11 @@
 		<div id="content_area">
 			<div id="products_box">
 				<?php
-					searchResult();
+					searchResult($pdo);
 				?>
 				
 				<?php
-					getProductByCategories();
+					getProductByCategories($pdo);
 				?>	
 			</div>
 		</div>

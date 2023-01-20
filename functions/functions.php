@@ -1,8 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","","insaf_service_db");
-if(mysqli_connect_errno()){
-	echo "Failed to connect MyQlite DB:".mysqli_connect_error();
-}
+
 
 include './includes/db.php';
 
@@ -64,7 +61,7 @@ function getCategories(PDO $pdo){
 		$categories_title = $row_cats['categories_title'];
 		$categories_title_slug = $row_cats['categories_title_slug'];
 		// echo "<li><a href='index.php?categories=$categories_id'>$categories_title</a></li>";
-		echo "<li><a href='categories-$categories_id'>$categories_title</a></li>";
+		echo "<a class='btn btn-info' href='categories-$categories_id'>$categories_title</a>";
 	}
 }
 
@@ -97,19 +94,45 @@ function getProduct(PDO $pdo){
 			$pro_price = $row_product['product_price'];
 			$pro_description = $row_product['product_description'];
 			$pro_image = $row_product['product_image'];
-			echo "
-				<div id='single_product'>
-					<a style='text-decoration:none;color:black;' href='$title_slug'><h2>$pro_title</h2>
-					<img class='img' src='admin_area/product_images/$pro_image' width='180' heigth='180'  /></a>
-					<p style='padding:10px;'><b>Price: $pro_price Taka</b></p>
-					<a href='$title_slug'><button class='detailsbtn'>Wishlist</button></a>
-					<a href='index.php?add_cart=$pro_id'><button class='cardbtn'>Add to Cart</button></a>
-				</div>
-			";
+			echo '<div id="card-hover"  class="col-sm-6 clo-md-4 col-lg-3">
+					<div class="card shadow-sm h-100">
+						<a style="text-decoration:none;color:black;" href="'.$title_slug.'">
+						<img src="admin_area/product_images/'.$pro_image.'" class="card-img-top" hight="200px" alt="'.$title_slug.'">
+						<div class="card-body">
+							<h6 class="card-title">'.limit_title($pro_title).'</h6></a>
+							<p style="color: rgb(232, 165, 78);"><b><span style="font-size: 20px;">৳</span> '.$pro_price.' </b></p>
+							
+						</div>
+						
+						<a id="a-hover"  class="card-footer bg-info" style="text-decoration:none;color:black;" href="index.php?add_cart='.$pro_id.'">Add to Cart</a>
+						
+					</div>
+				</div>';
 		}
 	}
 }
 
+function limit_title($string){
+	$string = strip_tags($string);
+	if (strlen($string) > 30) {
+		$stringCut = substr($string, 0, 30);
+		$endPoint = strrpos($stringCut,' ');
+		$string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+		// $string .= '... <a href="/this/story">Read More</a>';
+	}
+	return $string;
+}
+
+function limit_details($string){
+	$string = strip_tags($string);
+	if (strlen($string) > 30) {
+		$stringCut = substr($string, 0, 200);
+		$endPoint = strrpos($stringCut,' ');
+		$string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+		$string .= '... <a href="#details">Read More</a>';
+	}
+	return $string;
+}
 
 /*------------------------------------------Get_Praduct-----------------------------------------*/
 function getAllProduct(PDO $pdo){
@@ -123,15 +146,17 @@ function getAllProduct(PDO $pdo){
 			$pro_price = $row_product['product_price'];
 			$pro_description = $row_product['product_description'];
 			$pro_image = $row_product['product_image'];
-			echo "
-				<div id='single_product'>
-					<a style='text-decoration:none;color:black;' href='$title_slug'><h2>$pro_title</h2>
-					<img class='img' src='admin_area/product_images/$pro_image' width='180' heigth='180'  /></a>
-					<p style='padding:10px;'><b>Price: $pro_price Taka</b></p>
-					<a href='$title_slug'><button class='detailsbtn'>Wishlist</button></a>
-					<a href='index.php?add_cart=$pro_id'><button class='cardbtn'>Add to Cart</button></a>
-				</div>
-			";
+			echo '<div class="col-sm-6 clo-md-4 col-lg-3">
+					<div class="card h-100">
+						<a style="text-decoration:none;color:black;" href="'.$title_slug.'">
+						<img src="admin_area/product_images/'.$pro_image.'" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">'.$pro_title.'</h5></a>
+							<p style="color: rgb(232, 165, 78);"><b>Price: '.$pro_price.' Taka</b></p>
+							<a href="index.php?add_cart='.$pro_id.'">Add to Cart</a>
+						</div>
+					</div>
+				</div>';
 		}
 	}
 }
@@ -154,15 +179,17 @@ function getProductByCategories(PDO $pdo){
 			$pro_description = $row_product_categories['product_description'];
 			$pro_image = $row_product_categories['product_image'];
 			
-			echo "
-				<div id='single_product'>
-					<a style='text-decoration:none;color:black;' href='$title_slug'><h2>$pro_title</h2>
-					<img class='img' src='admin_area/product_images/$pro_image' width='180' heigth='180'  /></a>
-					<p style='padding:10px;'><b>Price: $pro_price Taka</b></p>
-					<a href='$title_slug'><button class='detailsbtn'>Wishlist</button></a>
-					<a href='index.php?add_cart=$pro_id'><button class='cardbtn'>Add to Cart</button></a>
-				</div>
-			";
+			echo '<div class="col-sm-6 clo-md-4 col-lg-3">
+					<div class="card h-100">
+						<a style="text-decoration:none;color:black;" href="'.$title_slug.'">
+						<img src="admin_area/product_images/'.$pro_image.'" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">'.$pro_title.'</h5></a>
+							<p style="color: rgb(232, 165, 78);"><b>Price: '.$pro_price.' Taka</b></p>
+							<a href="index.php?add_cart='.$pro_id.'">Add to Cart</a>
+						</div>
+					</div>
+				</div>';
 		}
 	}
 }
@@ -176,20 +203,23 @@ function searchResult(PDO $pdo){
 		foreach($get_product_by_product_id as $row_product){
 			$pro_id = $row_product['product_id'];
 			$pro_title = $row_product['product_title'];
+			$title_slug = $row_product['title_slug'];
 			$pro_categories = $row_product['product_categories'];
 			$pro_price = $row_product['product_price'];
 			$pro_description = $row_product['product_description'];
 			$pro_image = $row_product['product_image'];
 			
-			echo "
-				<div id='single_product'>
-					<h2>$pro_title</h2>
-					<img src='admin_area/product_images/$pro_image' width='180' heigth='180'  />
-					<p><b>$pro_price</b></p>
-					<a href='details.php?pro_id=$pro_id'>Details</a>
-					<a href='index.php?add_cart=$pro_id'><button style='float:right'>Add TO Cart</button></a>
-				</div>
-			";
+			echo '<div class="col-sm-6 clo-md-4 col-lg-3">
+					<div class="card h-100">
+						<a style="text-decoration:none;color:black;" href="'.$title_slug.'">
+						<img src="admin_area/product_images/'.$pro_image.'" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">'.$pro_title.'</h5></a>
+							<p style="color: rgb(232, 165, 78);"><b>Price: '.$pro_price.' Taka</b></p>
+							<a href="index.php?add_cart='.$pro_id.'">Add to Cart</a>
+						</div>
+					</div>
+				</div>';
 		}
 	}
 }
@@ -200,28 +230,29 @@ function getProductDetails(PDO $pdo){
 		$title_slug = $_GET['title_slug'];
 		$get_product_by_product_id = $pdo->query("SELECT * FROM products WHERE title_slug = '$title_slug' ")->fetchAll();
 		
-		foreach($get_product_by_product_id as $row_product){
-			$pro_id = $row_product['product_id'];
-			$pro_title = $row_product['product_title'];
-			$title_slug = $row_product['title_slug'];
-			$pro_categories = $row_product['product_categories'];
-			$pro_price = $row_product['product_price'];
-			$pro_description = $row_product['product_description'];
-			$pro_image = $row_product['product_image'];
+		// foreach($get_product_by_product_id as $row_product){
+		// 	$pro_id = $row_product['product_id'];
+		// 	$pro_title = $row_product['product_title'];
+		// 	$title_slug = $row_product['title_slug'];
+		// 	$pro_categories = $row_product['product_categories'];
+		// 	$pro_price = $row_product['product_price'];
+		// 	$pro_description = $row_product['product_description'];
+		// 	$pro_image = $row_product['product_image'];
 			
-			echo "
-				<div id='single_product'>
-					<h2>$pro_title</h2>
-					<img src='admin_area/product_images/$pro_image' width='180' heigth='180'  />
-					<p><b>$pro_price</b></p>
+		// 	echo "
+		// 		<div id='single_product'>
+		// 			<h2>$pro_title</h2>
+		// 			<img src='admin_area/product_images/$pro_image' width='180' heigth='180'  />
+		// 			<p><b>$pro_price</b></p>
 					
-					<a href='index.php?add_cart=$pro_id'><button style='float:center'>Add TO Cart</button></a>
-				</div>
-				<div class='description_box'>
-					$pro_description
-				</div>
-			";
-		}
+		// 			<a href='index.php?add_cart=$pro_id'><button style='float:center'>Add TO Cart</button></a>
+		// 		</div>
+		// 		<div class='description_box'>
+		// 			$pro_description
+		// 		</div>
+		// 	";
+		// }
+		return $get_product_by_product_id;
 	}	
 }
 

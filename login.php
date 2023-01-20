@@ -1,42 +1,40 @@
-
-<div class="login_box">
-	<form method="post" action="" >
-		<table align="left" width="70%">
-			<tr align="left">
-				<td colspan="4">
-					<h4>Login</h4><br/>
-					<span>
-						Dont Have an account? <a href="registration.php">Register Here</a><br/><br/>
-					</span>
-				</td>
-			</tr>
-			
-			<tr>
-				<td width="15%">Email:</td>				
-				<td colspan="3"><input type="Email" name="user_email" required placeholder="Email"  /></td>
-			</tr>
-			
-			<tr>
-				<td width="15%">Password:</td>				
-				<td colspan="3"><input type="Password" name="user_password" required placeholder="Password"  /></td>
-			</tr>
-			
-			<tr align="left">
-				<td></td>		
-				<td colspan="4">
-				<input type="submit" name="login" value="Login"  />
-				</td>
-			</tr>
-			
-			<tr align="left">
-				<td></td>		
-				<td colspan="4">
-				<a href="checkout.php?forget_pass">Forget Password?</a>
-				</td>
-			</tr>
-			
-		</table>
-	</form>
+<div class="row" style="margin-bottom:50px">
+	<div class="" style="margin-top:50px">
+		<div class="rounded d-flex justify-content-center">
+			<div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+				<div class="text-center">
+					<h3 class="text-primary">Sign In</h3>
+				</div>
+				<form method="POST" action="">
+					<div class="p-4">
+						<div class="input-group mb-3">
+							<span class="input-group-text bg-primary">
+								<i class="bi bi-person-plus-fill text-white"></i>
+							</span>
+							<input class="form-control" type="Email" name="user_email" placeholder="Email" required>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text bg-primary">
+								<i class="bi bi-key-fill text-white"></i>
+							</span>
+							<input type="password" name="user_password" class="form-control" placeholder="password" required>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+							<label class="form-check-label" for="flexCheckDefault">Remember Me</label>
+						</div>
+						<div class="d-grid gap-2">
+							<button class="btn btn-primary text-center mt-2" type="submit" name="login">Login</button>
+						</div>
+						<p class="text-center mt-3">Don't have an account?
+							<span class="text-primary"><a style="text-decoration:none;" href="registration.php">Sign Up</a></span>
+						</p>
+						<p class="text-center text-primary"><a style="text-decoration:none;" href="checkout.php?forget_pass">Forget Password?</a></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 	
 <?php

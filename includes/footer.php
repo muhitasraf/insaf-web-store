@@ -1,5 +1,7 @@
-		<div id="footer">
-			<h2 style="text-align: center; padding-top: 30px">&copy; 2020 - <?php echo date('Y'); ?> InsafService.Com</h2>
+		<div class="row bg-info" id="footer">
+			<h4 style="text-align: center; padding-top: 30px">
+				&copy; 2020 - <?php echo date('Y'); ?> InsafService.Com
+			</h4>
 		</div>
 	</div>
 </body>

@@ -1,39 +1,51 @@
 <?php include("includes/header.php");?>
 
 	<form action="" method="post" enctype="multipart/form-data">
-		<table align="center" width="100%">
-			<tr>
-				<td colspan="7">
-				<h2>Contact Us</h2> 
-				<div class="border_bottom"></div>
-				</td>
-				
-			</tr>
-			<tr>
-				<td>Your Name</td>
-				<td><input type="text" name="product_title" size="60" required/></td>
-			</tr>
-			
-			<tr>
-				<td>Your Email:</td>
-				<td><input type="text" name="product_keywords" required/></td>
-			</tr>
-			
-			<tr>
-				<td  valign="top">Descrive Problem:</td>
-				<td><textarea name="product_description" rows="10"></textarea></td>
-			</tr>
-			
-			<tr>
-				<td>Product Image:</td>
-				<td><input type="file" name="product_image"/></td>
-			</tr>
-			
-			<tr>
-			<td></td>
-				<td colspan="7"><input type="submit" name="insert_post" value="পণ্যটি যুক্ত করুন"/> </td>
-			</tr>
-			
-		</table>
+		<div class="row my-2">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="row my-2">
+						<div class="col-md-6">
+							<img src="images/email.webp" alt="">
+						</div>
+						<div class="col-md-6 px-4">
+							<div class="row">
+								<label for="full_name" class="col-form-label">Full Name</label>
+								<div class="input-group">
+									<input class="form-control" type="text" name="full_name" placeholder="Enter Full Name" required/>
+								</div>
+							</div>
+							<div class="row">
+								<label for="email" class="col-form-label">Your Email</label>
+								<div class="input-group">
+									<input class="form-control" type="email" name="email" placeholder="Enter Your Email" required/>
+								</div>
+							</div>
+							<div class="row">
+								<label for="problem_details" class="col-form-label">Your Problem</label>
+								<div class="input-group">
+									<textarea class="form-control" name="problem_details" rows="3"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<label for="email" class="col-form-label">Email</label>
+								<div class="input-group">
+									<input class="form-control" type="file" name="product_image"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="d-grid gap-2 my-2">
+									<input type="submit" value="Send Message" class="btn btn-primary rounded">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+			</div>
+		</div>
 	</form>
 <?php include("includes/footer.php");?>	

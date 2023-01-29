@@ -2,48 +2,13 @@
 	include("includes/header.php");
 ?>
 	
-	<div class="content_wrapper">
+	<div class="row">
 		<?php if(isset($_SESSION['user_id'])){ ?>
-		<div class="user_container">
-			<div class="user_contant">
-				<?php
-				if(isset($_GET['action'])){
-					$action = $_GET['action'];
-				}else{
-					$action = '';
-				}
-				
-				switch($action){
-					case "edit_account";
-					include('customer_area/edit_account.php');
-					break;
-					
-					case "edit_profile";
-					include('customer_area/edit_profile.php');
-					break;
-					
-					case "change_password";
-					include('customer_area/change_password.php');
-					break;
-					
-					case "delete_account";
-					echo $action;
-					break;
-					
-					case "logout";
-					echo $action;
-					break;
-					
-					default;
-					echo "Do you want to edit account?";
-				}
-				?>
-			</div>
+		<div class="col-md-3">
 			<div class="user_sidebar">
 				<?php 
 					$run_image = $pdo->query("SELECT * from users where user_id = '$_SESSION[user_id]'");
 					$row_image = $run_image->fetch();
-					
 					if($row_image['user_image'] !=''){
 				?>	
 				
@@ -66,6 +31,49 @@
 				</ul>
 			</div>
 		</div>
+		<div class="col-md-9">
+			<div class="user_container">
+				<div class="user_contant">
+					<?php
+					if(isset($_GET['action'])){
+						$action = $_GET['action'];
+					}else{
+						$action = '';
+					}
+					
+					switch($action){
+						case "my_order";
+						include('customer_area/my_order.php');
+						break;
+
+						case "edit_account";
+						include('customer_area/edit_account.php');
+						break;
+						
+						case "edit_profile";
+						include('customer_area/edit_profile.php');
+						break;
+						
+						case "change_password";
+						include('customer_area/change_password.php');
+						break;
+						
+						case "delete_account";
+						echo $action;
+						break;
+						
+						case "logout";
+						echo $action;
+						break;
+						
+						default;
+						echo "Do you want to edit account?";
+					}
+					?>
+				</div>
+			</div>
+		</div>
+		
 		<?php }else{ ?>
 		<h1>Account Setting Page</h1>
 		<h5><a href="index.php?action=login">Login</a> to your account.</h5>

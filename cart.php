@@ -1,113 +1,13 @@
 <?php include("includes/header.php");?>
 <style>
-.payment-info {
-	background: blue;
-	padding: 10px;
-	border-radius: 6px;
-	color: #fff;
-	font-weight: bold;
-}
 
-.product-details {
-	padding: 10px;
-}
-
-.cart-1 {
-	background: #fff;
-}
-
-.p-about {
-	font-size: 12px;
-}
-
-.table-shadow {
-	-webkit-box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
-	box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
-}
-
-.type {
-	font-weight: 400;
-	font-size: 10px;
-}
-
-label.radio {
-	cursor: pointer;
-}
-
-label.radio input {
-	position: absolute;
-	top: 0;
-	left: 0;
-	visibility: hidden;
-	pointer-events: none;
-}
-
-label.radio span {
-	padding: 1px 12px;
-	border: 2px solid #ada9a9;
-	display: inline-block;
-	color: #8f37aa;
-	border-radius: 3px;
-	text-transform: uppercase;
-	font-size: 11px;
-	font-weight: 300;
-}
-
-label.radio input:checked + span {
-	border-color: #fff;
-	background-color: blue;
-	color: #fff;
-}
-
-.credit-inputs {
-	background: rgb(102,102,221);
-	color: #fff !important;
-	border-color: rgb(102,102,221);
-}
-
-.credit-inputs::placeholder {
-	color: #fff;
-	font-size: 13px;
-}
-
-.credit-card-label {
-	font-size: 9px;
-	font-weight: 300;
-}
-
-.form-control.credit-inputs:focus {
-	background: rgb(102,102,221);
-	border: rgb(102,102,221);
-}
-
-.line {
-	border-bottom: 1px solid rgb(102,102,221);
-}
-
-.information span {
-	font-size: 12px;
-	font-weight: 500;
-}
-
-.information {
-	margin-bottom: 5px;
-}
-
-.items {
-	-webkit-box-shadow: 5px 5px 4px -1px rgba(0,0,0,0.25);
-	box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
-}
-
-.spec {
-	font-size: 11px;
-}
 </style>	
-<div class="row bg-light my-2 gy-2 no-gutters">
+<div class="row bg-light my-2 gy-2 m-2 no-gutters">
 	<div class="col-md-8">
 		<div class="product-details mr-2">
 			<div class="d-flex flex-row align-items-center">
-				<i class="fa fa-long-arrow-left"></i>
-				<span class="ml-2">Continue Shopping</span>
+				<a href="index.php"><i class="fa fa-long-arrow-left"></i>
+				<span class="ml-2">Continue Shopping</span></a>
 			</div>
 			<hr>
 			<h6 class="mb-0">Shopping cart</h6>
@@ -147,7 +47,6 @@ label.radio input:checked + span {
 						<img class="rounded" src="admin_area/product_images/<?php echo $product_image;?>" width="40">
 						<div class="ms-2">
 							<span class="font-weight-bold d-block"><?php echo $product_title; ?></span>
-							<!-- <span class="spec">256GB, Navy Blue</span> -->
 						</div>
 					</div>
 					<div class="d-flex flex-row align-items-center">
@@ -181,7 +80,6 @@ label.radio input:checked + span {
 				<span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png"/></span> 
 			</label>
 
-
 			<label class="radio"> 
 				<input type="radio" name="card" value="payment"> 
 				<span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png"/></span> 
@@ -206,17 +104,17 @@ label.radio input:checked + span {
 			</div>
 			<hr class="line">
 			<div class="d-flex justify-content-between information">
-				<span>Subtotal</span><span>$<?php total_price($pdo); ?>.00</span>
+				<span>Subtotal</span><span>৳<?php total_price($pdo); ?>.00</span>
 			</div>
 			<div class="d-flex justify-content-between information">
-				<span>Shipping</span><span>$20.00</span>
+				<span>Shipping</span><span>৳20.00</span>
 			</div>
 			<div class="d-flex justify-content-between information">
-				<span>Total(Incl. taxes)</span><span>$<?php echo total_price($pdo) ;?>.00</span>
+				<span>Total(Incl. taxes)</span><span>৳<?php echo total_price($pdo) ;?>.00</span>
 			</div>
 			<button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button">
 				<a href="checkout.php" style="text-decoration:none;color:white">
-				<span>$<?php echo total_price($pdo) ;?>.00</span>
+				<span>৳<?php echo total_price($pdo) ;?>.00</span>
 				<span> Checkout<i class="fa fa-long-arrow-right ml-1"></i></span>
 				</a>
 			</button>

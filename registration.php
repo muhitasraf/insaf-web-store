@@ -2,77 +2,67 @@
 	include("includes/header.php");
 ?>
 
-<div class="content_wrapper">
-	<div class="registration_box">
-		<form method="post" action=""  enctype="multipart/form-data">
-			<table align="left" width="70%">
-				<tr align="left">
-					<td colspan="4">
-						<h2>Register</h2><br/>
-						<span>
-							I have an account? <a href="index.php?action=login">Login Here</a><br/><br/>
-						</span>
-					</td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Full Name: </td>				
-					<td colspan="3"><input type="Text" name="user_name" required placeholder="Full Name"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Email:</td>				
-					<td colspan="3"><input type="Email" name="user_email" required placeholder="Email"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Password:</td>				
-					<td colspan="3"><input type="Password" id="confirm_password1" name="user_password" required placeholder="Password"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Confirm Password:</td>				
-					<td colspan="3"><input type="Password" id="confirm_password2" name="confirm_password" required placeholder="Confirm Password"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="25%">Country:</td>				
-					<td colspan="3">
-						<?php include('includes/country_list.php'); ?>
-					</td>
-				</tr>
-				
-				<tr>
-					<td width="15%">City:</td>				
-					<td colspan="3"><input type="Text" name="user_city" required placeholder="City"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Contact:</td>				
-					<td colspan="3"><input type="Text" name="user_contact" required placeholder="Contact"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Address:</td>				
-					<td colspan="3"><input type="Text" name="user_address" required placeholder="Address"  /></td>
-				</tr>
-				
-				<tr>
-					<td width="15%">Image:</td>				
-					<td colspan="3"><input type="file" name="user_image" required placeholder="Address"  /></td>
-				</tr>
-				
-				<tr align="left">
-					<td></td>		
-					<td colspan="4">
-						<input type="submit" name="register" value="Register"  />
-					</td>
-				</tr>
-				
-			</table>
-		</form>
-	</div>
-	
+<div class="row" style="margin-bottom:50px">
+	<div class="" style="margin-top:40px">
+		<div class="rounded d-flex justify-content-center">
+			<div class="col-md-4 col-sm-12 shadow-lg p-3 bg-light">
+				<div class="text-center">
+					<h3 class="text-primary">Sign In</h3>
+				</div>
+				<form method="post" action=""  enctype="multipart/form-data">
+					<div class="p-1">
+						<label for="user_name">Full Name</label>
+						<div class="input-group mb-1">
+							<input class="form-control" type="text" name="user_name" placeholder="Full name" required>
+						</div>
+						<label for="user_email">Email</label>
+						<div class="input-group mb-1">
+							<input class="form-control" type="Email" name="user_email" placeholder="Email" required>
+						</div>
+						<label for="user_password">Password</label>
+						<div class="input-group mb-1">
+							<input type="password" name="user_password" class="form-control" placeholder="password" required>
+						</div>
+						<label for="confirm_password">Confirm Password</label>
+						<div class="input-group mb-1">
+							<input type="Password" name="confirm_password" class="form-control"  id="confirm_password2" placeholder="Confirm Password" required>
+						</div>
+						<label for="country">Country</label>
+						<div class="input-group mb-1">
+							<?php include('includes/country_list.php'); ?>
+						</div>
+						<label for="user_city">City</label>
+						<div class="input-group mb-1">
+							<input type="Text" name="user_city" class="form-control" required placeholder="City"  />
+						</div>
+						<label for="user_contact">Contact</label>
+						<div class="input-group mb-1">
+							<input type="Text" name="user_contact" class="form-control" required placeholder="Contact"  />
+						</div>
+						<label for="user_address">Address</label>
+						<div class="input-group mb-1">
+							<input type="Text" name="user_address" class="form-control" required placeholder="Address"  />
+						</div>
+						<label for="user_image">Image</label>
+						<div class="input-group mb-1">
+							<input type="file" name="user_image" class="form-control" required placeholder="Address"  />
+						</div>
+						<div class="d-grid gap-2">
+							<button class="btn btn-primary text-center mt-2" type="submit" name="register">Register</button>
+						</div>
+						<p class="text-center mt-2">Don't have an account?
+							<span class="text-primary">
+								<a style="text-decoration:none;" href="index.php?action=login">Login</a>
+							</span>
+						</p>
+						<p class="text-center text-primary">
+							<a style="text-decoration:none;" href="checkout.php?forget_pass">Forget Password?</a>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
 
 <?php
 if(isset($_POST['register'])){

@@ -2,9 +2,9 @@
 $select_user = $pdo->query("select * from users where user_id = '$_SESSION[user_id]'");
 $fetch_user = $select_user->fetch();
 ?>
-	<div class="registration_box">
+	<div class="row">
 		<form method="post" action=""  enctype="multipart/form-data">
-			<table align="left" width="70%">
+			<!-- <table align="left" width="70%">
 				<tr align="left">
 					<td colspan="4">
 						<h2>Edit Your Account</h2><br/>
@@ -29,7 +29,42 @@ $fetch_user = $select_user->fetch();
 					</td>
 				</tr>
 				
-			</table>
+			</table> -->
+			
+			<div class="col-md-10">
+				<div class="row my-2">
+					<div class="col-md-4">
+						<label for="basic-url" class="form-label">Change Email:</label>
+					</div>
+					<div class="col-md-8">
+						<div class="input-group">
+						<input type="Email" class="form-control" name="user_email" value="<?php echo $fetch_user['user_email']?>" required placeholder="Email">
+						</div>
+					</div>					
+				</div>
+				<div class="row  my-2">
+					<div class="col-md-4">
+						<label for="basic-url" class="form-label">Current Password:</label>
+					</div>
+					<div class="col-md-8">
+						<div class="input-group">
+							<input type="password" class="form-control" name="current_password" required placeholder="Current Password"/>
+						</div>
+					</div>					
+				</div>
+				<div class="row  my-2">
+					<div class="col-md-4">
+					</div>
+					<div class="col-md-8">
+						<div class="input-group">
+							<input type="submit" class="btn btn-info form-control" name="edit_account" value="Update">
+						</div>
+					</div>					
+				</div>
+			</div>
+			<div class="col-md-2">
+			</div>
+
 		</form>
 	</div>
 	

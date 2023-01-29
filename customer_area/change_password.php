@@ -7,30 +7,31 @@ $fetch_user = $select_user->fetchAll();
 			<table align="left" width="70%">
 				<tr align="left">
 					<td colspan="4">
-						<h2>Edit Your Account</h2><br/>
+						<h2>Edit Your Account</h2>
+						<hr>
 					</td>
 				</tr>
 				
 				<tr>
 					<td width="15%">Current Password:</td>				
-					<td colspan="3"><input type="password" name="current_password" required placeholder="Current Password"/>
+					<td colspan="3"><input type="password" name="current_password" class="form-control" required placeholder="Current Password"/>
 					</td>
 				</tr>
 				
 				<tr>
 					<td width="15%">New Password:</td>				
-					<td colspan="3"><input type="password" id="confirm_password1" name="new_password" required placeholder="New Password"  /></td>
+					<td colspan="3"><input type="password" id="confirm_password1" name="new_password" class="form-control" required placeholder="New Password"  /></td>
 				</tr>
 				
 				<tr>
 					<td width="35%">Confirm New Password:</td>				
-					<td colspan="3"><input type="password" id="confirm_password2" name="confirm_new_password"  required placeholder="Confirm New Password"  /></td>
+					<td colspan="3"><input type="password" id="confirm_password2" name="confirm_new_password" class="form-control"  required placeholder="Confirm New Password"  /></td>
 				</tr>
 				
 				<tr align="left">
 					<td></td>		
 					<td colspan="4">
-					<input type="submit" name="change_password" value="Update"  />
+						<input type="submit" class="btn-info form-control"  name="change_password" value="Update"  />
 					</td>
 				</tr>
 				

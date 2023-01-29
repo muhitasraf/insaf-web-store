@@ -25,7 +25,7 @@ include("includes/db.php");
             <div class="col-md-3 p-0 m-0">
                 <div class="header_logo">
                     <a href="index.php">
-                        <img id="logo" src="https://via.placeholder.com/250x40" alt="" />
+                        <img id="logo" src="images/main_logo.png" alt="" />
                     </a>
                 </div>
             </div>
@@ -55,21 +55,21 @@ include("includes/db.php");
                 </a>
             </div>
 			<?php if(!isset($_SESSION['user_id'])){?>
-				<div class="col-md-4">
-					<div class="register-login float-md-end">
-						<div class="login ">
-							<a class="btn btn-info" href="index.php?action=login">Login</a>
-							<a class="btn btn-info" href="registration.php">Register</a>
-						</div>
-					</div>
-				</div>
+            <div class="col-md-4">
+                <div class="register-login float-md-end">
+                    <div class="login ">
+                        <a class="btn btn-info" href="index.php?action=login">Login</a>
+                        <a class="btn btn-info" href="registration.php">Register</a>
+                    </div>
+                </div>
+            </div>
 			<?php }else{ ?>
 			
 			<?php 
 			$select_user = $pdo->query("SELECT * from users where user_id = '$_SESSION[user_id]'");
 			$user_data = $select_user->fetch();
 			?>
-				<div class="col-md-4">
+			<div class="col-md-4">
 				<div id="profile">
 					<ul>
 						<li class="dropdown_header">
@@ -89,34 +89,29 @@ include("includes/db.php");
 						</li>
 					</ul>
 				</div>
-					<div class="register-login float-md-end">
-						<div class="login ">
-							<a class="btn btn-info" href="my_account.php">Dashboard</a>
-							<a class="btn btn-info" href="logout.php">Log Out</a>
-						</div>
-					</div>
-				</div>
-				
+                <div class="register-login float-md-end">
+                    <div class="login ">
+                        <a class="btn btn-info" href="my_account.php">Dashboard</a>
+                        <a class="btn btn-info" href="logout.php">Log Out</a>
+                    </div>
+                </div>
+            </div>
 			<?php }?>
         </div>
         <div class="row ">
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#0dcaf0;">
                 <div class="container-fluid">
-                    <a href="#" class="navbar-brand">Brand</a>
+                    <a href="index.php" class="navbar-brand">Home</a>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="index.php" class="nav-item nav-link active text-white">Home</a>
                             <a href="all_products.php" class="nav-item nav-link text-white">All Product</a>
                             <a href="my_account.php" class="nav-item nav-link text-white">My Account</a>
                             <a href="cart.php" class="nav-item nav-link text-white">Shopping Cart</a>
                             <a href="contact.php" class="nav-item nav-link text-white">Contact Us</a>
                             <a href="logout.php" class="nav-item nav-link text-white">Logout</a>
-                        </div>
-                        <div class="navbar-nav ms-auto">
-                            <a href="#" class="nav-item nav-link text-white">Login</a>
                         </div>
                     </div>
                 </div>

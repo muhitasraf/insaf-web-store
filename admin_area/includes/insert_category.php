@@ -1,22 +1,21 @@
 
 <div class="form_box">	
 	<form action="" method="post" enctype="multipart/form-data">
-		<table align="center" width="100%">
-			<tr>
-				<td colspan="7">
-				<h2>Add Category</h2> 
-				<div class="border_bottom"></div>
-				</td>
-				
-			</tr>
+		<input type="hidden" name="das_header" class="das_header" id="das_header" value="Add Category">
+		<table width="80%">
+			<input type="hidden" name="das_header" class="das_header" id="das_header" value="Add Category">
 			<tr>
 				<td>Add new Category</td>
-				<td><input type="text" name="product_categories" size="60" required/></td>
+				<td>
+					<input type="text" class="form-control my-2" name="product_categories" size="60" required/>
+				</td>
 			</tr>
 			
 			<tr>
-			<td></td>
-				<td colspan="7"><input type="submit" name="insert_cat" value="Add Category"/> </td>
+				<td></td>
+				<td colspan="7">
+					<input type="submit" name="insert_cat" class="btn-info form-control" value="Add Category"> 
+				</td>
 			</tr>
 			
 		</table>

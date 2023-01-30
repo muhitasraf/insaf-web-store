@@ -3,31 +3,25 @@
 $edit_product  = $pdo->query("SELECT * from products where product_id = '$_GET[product_id]' ");
 $fetch_edit = $edit_product->fetch();
 ?>
-<div class="form_box">	
+<div class="d-flex justify-content-center">	
 	<form action="" method="post" enctype="multipart/form-data">
-		<table align="center" width="100%">
-			<tr>
-				<td colspan="7">
-				<h2>Edit product</h2> 
-				<div class="border_bottom"></div>
-				</td>
-				
-			</tr>
+		<table width="80%">
+			<input type="hidden" name="das_header" class="das_header" id="das_header" value="Edit product">
 			<tr>
 				<td>Product Title</td>
-				<td><input type="text" name="product_title" value="<?php echo $fetch_edit['product_title']; ?>" size="60" required/></td>
+				<td><input type="text" name="product_title" class="form-control my-2" value="<?php echo $fetch_edit['product_title']; ?>" size="60" required/></td>
 			</tr>
 			
 			
 			<tr>
 				<td>Title Slug</td>
-				<td><input type="text" name="title_slug" value="<?php echo $fetch_edit['title_slug']; ?>" size="60" required/></td>
+				<td><input type="text" name="title_slug" class="form-control my-2" value="<?php echo $fetch_edit['title_slug']; ?>" size="60" required/></td>
 			</tr>
 			
 			<tr>
 				<td>Category:</td>
 				<td>
-				<select name="product_categories" id=""><option value="">Select Category</option>
+				<select name="product_categories" class="form-control my-2" id=""><option value="">Select Category</option>
 					<?php
 						$get_categories = "SELECT * from categories";
 						$run_categories = $pdo->query($get_categories)->fetchAll();
@@ -48,31 +42,36 @@ $fetch_edit = $edit_product->fetch();
 			<tr>
 				<td valign="top">Product Image:</td>
 				<td>
-					<input type="file" name="product_image"/>
-					<div class="edit_image">
-						<img src="product_images/<?php echo $fetch_edit['product_image'];?>" width="100" height="70" />
+					<input type="file" class="form-control my-2" name="product_image"/>
+					<div class="edit_image my-2">
+						<img src="product_images/<?php echo $fetch_edit['product_image'];?>" width="160" height="150" />
+						<img src="product_images/<?php echo $fetch_edit['product_image'];?>" width="160" height="150" />
+						<img src="product_images/<?php echo $fetch_edit['product_image'];?>" width="160" height="150" />
+						<img src="product_images/<?php echo $fetch_edit['product_image'];?>" width="160" height="150" />
 					</div>
 				</td>
 			</tr>
 			
 			<tr>
 				<td>Product Price:</td>
-				<td><input type="text" name="product_price" value="<?php echo $fetch_edit['product_price'];?>" required/></td>
+				<td><input type="text" name="product_price" class="form-control my-2" value="<?php echo $fetch_edit['product_price'];?>" required/></td>
 			</tr>
 			
 			<tr>
 				<td  valign="top">Product Detils:</td>
-				<td><textarea name="product_description" rows="10"><?php echo $fetch_edit['product_description'];?></textarea></td>
+				<td><textarea name="product_description" class="form-control my-2" rows="5" id="summernote"><?php echo $fetch_edit['product_description'];?></textarea></td>
 			</tr>
 			
 			<tr>
 				<td>Product Tag:</td>
-				<td><input type="text" name="product_keywords" value="<?php echo $fetch_edit['product_keywords'];?>" required/></td>
+				<td><input type="text" name="product_keywords" class="form-control my-2" value="<?php echo $fetch_edit['product_keywords'];?>" required/></td>
 			</tr>
 			
 			<tr>
 			<td></td>
-				<td colspan="7"><input type="submit" name="edit_post" value="Update"/> </td>
+				<td colspan="7">
+					<input type="submit" class="btn btn-info form-control mb-5" name="edit_post" value="Update"/> 
+				</td>
 			</tr>
 			
 		</table>

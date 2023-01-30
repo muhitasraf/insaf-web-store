@@ -3,23 +3,18 @@ $edit_cat = $pdo->query("SELECT * from categories where categories_id = '$_GET[c
 $fetch_cat = $edit_cat->fetch();
 ?>
 <div class="form_box">	
+	
+	<input type="hidden" name="das_header" class="das_header" id="das_header" value="Edit Category">
 	<form action="" method="post" enctype="multipart/form-data">
-		<table align="center" width="100%">
-			<tr>
-				<td colspan="7">
-				<h2>Edit Category</h2> 
-				<div class="border_bottom"></div>
-				</td>
-				
-			</tr>
+		<table width="80%">
 			<tr>
 				<td>Add new Category</td>
-				<td><input type="text" name="product_categories" value="<?php echo $fetch_cat['categories_title']; ?>" size="60" required/></td>
+				<td><input type="text" name="product_categories" class="form-control my-2" value="<?php echo $fetch_cat['categories_title']; ?>" size="60" required/></td>
 			</tr>
 			
 			<tr>
-			<td></td>
-				<td colspan="7"><input type="submit" name="edit_cat" value="Update Category"/> </td>
+				<td></td>
+				<td colspan="7"><input type="submit" name="edit_cat" class="btn btn-info form-control" value="Update Category"/> </td>
 			</tr>
 			
 		</table>

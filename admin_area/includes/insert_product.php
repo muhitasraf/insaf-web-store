@@ -1,22 +1,19 @@
 
 <div class="form_box">	
 	<form action="" method="post" enctype="multipart/form-data">
-		<table align="center" width="100%">
-			<tr>
-				<td colspan="7">
-				<h2>Add product</h2> 
-				<div class="border_bottom"></div>
-				</td>
-				
-			</tr>
+		<table width="85%">
+			<input type="hidden" name="das_header" class="das_header" id="das_header" value="Add product">
 			<tr>
 				<td>Product Title</td>
-				<td><input type="text" name="product_title" size="60" required/></td>
+				<td>
+					<input class="form-control my-3" type="text" name="product_title" size="60" required>
+				</td>
 			</tr>
 			<tr>
 				<td>Category:</td>
 				<td>
-				<select name="product_categories" id=""><option value="">Select Category</option>
+				<select name="product_categories  my-3"  class="form-control" id="">
+					<option value="">Select Category</option>
 					<?php
 						$get_categories = "SELECT * from categories";
 						$run_categories = $pdo->query($get_categories)->fetchAll();
@@ -29,32 +26,38 @@
 				</select>
 				</td>
 			</tr>
-			
 			<tr>
 				<td>Product Image:</td>
-				<td><input type="file" name="product_image"/></td>
+				<td>
+					<input type="file" name="product_image"  class="form-control  my-3" required>
+				</td>
 			</tr>
 			
 			<tr>
 				<td>Product Price:</td>
-				<td><input type="text" name="product_price" required/></td>
+				<td>
+					<input type="text" name="product_price"  class="form-control  my-3" required>
+				</td>
 			</tr>
 			
 			<tr>
 				<td  valign="top">Product Detils:</td>
-				<td><textarea name="product_description" rows="10"></textarea></td>
+				<td>
+					<textarea name="product_description"  class="form-control  my-3" id="summernote" rows="5"></textarea>
+				</td>
 			</tr>
-			
 			<tr>
 				<td>Product Tag:</td>
-				<td><input type="text" name="product_keywords" required/></td>
+				<td>
+					<input type="text" name="product_keywords"  class="form-control  my-3" required/>
+				</td>
 			</tr>
-			
 			<tr>
 			<td></td>
-				<td colspan="7"><input type="submit" name="insert_post" value="পণ্যটি যুক্ত করুন"/> </td>
+				<td colspan="7">
+					<input type="submit" name="insert_post"  class="btn-info form-control  mb-5" value="পণ্যটি যুক্ত করুন">
+				</td>
 			</tr>
-			
 		</table>
 	</form>
 </div>

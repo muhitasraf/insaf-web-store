@@ -1,12 +1,11 @@
 
 <div class="view_product_box">
-	<h2>Add New User</h2>
-	<div class="border_bottom"></div>
+	<input type="hidden" name="das_header" class="das_header" id="das_header" value="Add New User">
 	<form action="" method="post" enctype="multipart/form-data">
 	<div class="search_box">
 		<input type="text" id="search" placeholder="Search here"/>
 	</div>
-		<table width="100%">
+		<table class="table table-bordered" width="100%">
 			<thead>
 				<tr>
 					<th><input type="checkbox" id="checkAll" />Check</th>

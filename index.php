@@ -36,7 +36,7 @@ include("includes/header.php");
 		</div>
 
 		<div class="col-md-10">
-			<?php if(strpos($_SERVER['REQUEST_URI'],'/index.php')){ ?>
+			<?php if(strpos($_SERVER['REQUEST_URI'],'/index.php')>1 || strlen($_SERVER['REQUEST_URI'])==17){ ?>
 			<div class="row my-2">
 				<div style="height: 23rem;" id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 					<div class="carousel-indicators">
@@ -65,35 +65,41 @@ include("includes/header.php");
 				$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 				$start_from = ($page - 1) * $per_page_record;
 			?>
-			<div class="row gy-2 my-2">
+			<div class="row gy-1 my-0">
 				<?php cart($pdo); ?>
 				<?php getAllProduct($pdo,$start_from, $per_page_record); ?>
-				<?php getProductByCategories($pdo); ?>
-			</div>	
+				<?php getProductByCategories($pdo,$start_from, $per_page_record); ?>
+			</div>
 			<div class="row gy-2 my-2 mb-5 ps-3">
 				<div class="d-flex justify-content-center btn-group" role="group">
 					<?php
-						$query = "SELECT COUNT(*) products_count FROM products";
+					    if(strpos($_SERVER['REQUEST_URI'],'categories')){
+					        $categories_id = str_replace("categories-","",$_GET['categories']);
+						    $query = "SELECT COUNT(*) products_count FROM products WHERE product_categories = $categories_id";
+						    $search_link = '?page=';
+					    }else{
+                            $query = "SELECT COUNT(*) products_count FROM products";
+                            $search_link = 'index.php?page=';
+					    }
 						$total_records = $pdo->query($query)->fetch()['products_count'];
-						echo "<br>";
-						// Number of pages required.   
+						echo "<br>";  
 						$total_pages = ceil($total_records / $per_page_record);
 						$pagLink = "";
-
+                        
 						if ($page >= 2) {
-							echo "<a href='index.php?page=".($page - 1)."' class='mx-1'><button type='button' class='btn btn-outline-primary'>Prev</button></a>";
+							echo "<a href='".$search_link.($page - 1)."' class='mx-1'><button type='button' class='btn btn-outline-primary'>Prev</button></a>";
 						}
 
 						for ($i = 1; $i <= $total_pages; $i++) {
 							if($i == $page){
-								$pagLink .= "<a href='index.php?page=".$i."' class='mx-1'><button type='button' class='active btn btn-outline-primary'>".$i."</button></a>";
+								$pagLink .= "<a href='".$search_link.$i."' class='mx-1'><button type='button' class='active btn btn-outline-primary'>".$i."</button></a>";
 							}else{
-								$pagLink .= "<a href='index.php?page=".$i."' class='mx-1'><button type='button' class='btn btn-outline-primary'>".$i."</button></a>";
+								$pagLink .= "<a href='".$search_link.$i."' class='mx-1'><button type='button' class='btn btn-outline-primary'>".$i."</button></a>";
 							}
 						};
 						echo $pagLink;
 						if ($page < $total_pages) {
-							echo "<a href='index.php?page=".($page + 1)."' class='mx-1'> <button type='button' class='btn btn-outline-primary'>Next</button> </a>";
+							echo "<a href='".$search_link.($page + 1)."' class='mx-1'> <button type='button' class='btn btn-outline-primary'>Next</button> </a>";
 						}
 					?>
 				</div>

@@ -60,7 +60,7 @@ function getCategories(PDO $pdo){
 		$categories_title = $row_cats['categories_title'];
 		$categories_title_slug = $row_cats['categories_title_slug'];
 		// echo "<li><a href='index.php?categories=$categories_id'>$categories_title</a></li>";
-		echo "<a class='btn btn-info' href='categories-$categories_id'>$categories_title</a>";
+		echo "<a class='btn btn-info' style='text-align:left;' href='categories-$categories_id'>$categories_title</a>";
 	}
 }
 
